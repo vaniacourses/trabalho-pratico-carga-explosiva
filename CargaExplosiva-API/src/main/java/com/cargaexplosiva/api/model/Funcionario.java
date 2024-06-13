@@ -29,6 +29,7 @@ public abstract class Funcionario extends Endereco implements UserDetails,
     private String nome;
     private String sobrenome;
     private Date dataNascimento;
+    @Column(unique = true)
     private String email;
     private String password;
     private String numRG;
