@@ -1,14 +1,17 @@
 package com.cargaexplosiva.api.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,8 +20,15 @@ import java.sql.Date;
 @Entity(name = "mecanico")
 public class Mecanico extends Funcionario implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String experienciaProficional;
-    private Date dataContratacao;
+
+    public Collection<GrantedAuthority> getAuthorities() {
+        if(this.getRole() == FuncionarioRole.MECANICO){
+            return List.of(new SimpleGrantedAuthority(FuncionarioRole.MECANICO.name()));
+        }else return List.of();
+    }
+
 }
