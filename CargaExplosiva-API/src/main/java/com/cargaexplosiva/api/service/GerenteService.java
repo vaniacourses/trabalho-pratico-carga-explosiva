@@ -5,6 +5,8 @@ import com.cargaexplosiva.api.repository.GerenteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class GerenteService{
@@ -17,5 +19,9 @@ public class GerenteService{
 
     public void save(Gerente gerente){
         repositoryGerente.save(gerente);
+    }
+
+    public List<Gerente> getAll() {
+        return repositoryGerente.findAll();
     }
 }
