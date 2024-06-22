@@ -16,24 +16,21 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "veiculo-motorista")
-public class AtribuicaoVeiculoMotorista implements Serializable {
+@Entity(name = "controle_presenca")
+public class ControlePresenca implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id_VeiculoMotorista;
+    private UUID id_presenca;
     @Column(nullable = false)
-    private Timestamp dataInicio;
-    private Timestamp dataFim;
+    private Timestamp entrada;
+    private Timestamp saida;
+    private float horasDeTrabalhos;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_motorista", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "id_motorista")
     private Motorista motorista;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_veiculo", nullable = false)
-    private Veiculo veiculo;
 }

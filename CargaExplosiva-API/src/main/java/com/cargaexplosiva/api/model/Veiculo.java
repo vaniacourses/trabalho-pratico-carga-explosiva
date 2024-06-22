@@ -53,4 +53,10 @@ public class Veiculo implements Serializable {
             new HashSet<>();
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     private Set<Multa> multas = new HashSet<>();
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    private Set<Abastecimento> abastecimentos = new HashSet<>();
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    private Set<CRLV> crlvs = new HashSet<>();
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    private Set<Sinistro> sinistros = new HashSet<>();
 }

@@ -31,11 +31,20 @@ public class Motorista extends Funcionario implements Serializable{
     @Column(nullable = false)
     private int pontoCNH;
     private String CNH;
+    private String funcoes;
     private boolean ativo;
     @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
     private Set<AtribuicaoVeiculoMotorista> atribuicaoVeiculoMotoristas =
             new HashSet<>();
     @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
     private Set<Multa> multas = new HashSet<>();
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    private Set<ControlePresenca> presencas = new HashSet<>();
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    private Set<RelatorioMotorista> relatorios = new HashSet<>();
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    private Set<Abastecimento> abastecimentos = new HashSet<>();
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    private Set<Sinistro> sinistros = new HashSet<>();
 
 }

@@ -40,7 +40,7 @@ public abstract class Funcionario extends Endereco implements Serializable{
     @Column(nullable = false)
     private FuncionarioRole role;
     @Column(nullable = false)
-    private Date dataContratcao;
+    private Date dataContratacao;
     private Date dataTerminoContrato;
 
 }

@@ -1,5 +1,6 @@
 package com.cargaexplosiva.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +29,9 @@ public class CRLV implements Serializable {
     @Column(unique = true, nullable = false)
     private int numero;
     private String crlv;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @JoinColumn(name = "id_veiculo", nullable = false)
+    private Veiculo veiculo;
 
 }
