@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,8 +19,8 @@ public abstract class Funcionario extends Endereco implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_funcionario;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id_funcionario;
 
     @Column(nullable = false, unique = true)
     private long numCPF;

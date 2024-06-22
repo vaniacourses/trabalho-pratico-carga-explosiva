@@ -73,4 +73,8 @@ public class Veiculo implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "id_seguro")
     )
     private Set<Seguro> seguros = new HashSet<>();
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    private Set<OSInterna> osInternas = new HashSet<>();
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    private Set<OSExterna> osExternas = new HashSet<>();
 }
