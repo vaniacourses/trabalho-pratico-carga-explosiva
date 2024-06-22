@@ -46,5 +46,7 @@ public class Motorista extends Funcionario implements Serializable{
     private Set<Abastecimento> abastecimentos = new HashSet<>();
     @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
     private Set<Sinistro> sinistros = new HashSet<>();
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    private Set<ProblemaRelatado> problemaRelatados = new HashSet<>();
 
 }
