@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,4 +35,7 @@ public class Oficina extends Endereco implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "oficina", fetch = FetchType.LAZY)
     private Set<OSExterna> osExternas;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "oficina-servico")
+    private Set<Servico> servicos = new HashSet<>();
 }

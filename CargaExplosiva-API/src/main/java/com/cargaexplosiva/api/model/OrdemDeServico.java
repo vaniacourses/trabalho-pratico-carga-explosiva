@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -33,4 +34,7 @@ public abstract class OrdemDeServico implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_veiculo", nullable = false)
     private Veiculo veiculo;
+    @ManyToMany
+    @JoinTable(name = "os-servicos")
+    private Set<Servico> servicos;
 }

@@ -37,10 +37,10 @@ public class Abastecimento extends Endereco implements Serializable {
     private float volume;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
-    @JoinColumn(name = "id_motorista", nullable = false)
+    @JoinColumn(name = "id_motorista")
     private Motorista motorista;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
-    @JoinColumn(name = "id_veiculo", nullable = false)
+    @JoinColumn(name = "id_veiculo")
     private Veiculo veiculo;
 }
