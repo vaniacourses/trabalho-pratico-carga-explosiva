@@ -14,17 +14,16 @@ import org.springframework.beans.factory.annotation.Value;
 @MappedSuperclass
 public abstract class Endereco {
 
-    @Column(nullable = false)
     private int cep;
-    @Column(nullable = false, length = 80)
+    @Column(length = 80)
     private String rua;
     private int numero;
     private String complemento;
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String bairro;
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String cidade;
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     @Value("Brasil")
     private String pais;
 

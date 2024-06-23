@@ -5,6 +5,8 @@ import com.cargaexplosiva.api.repository.MotoristaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class MotoristaService{
@@ -17,5 +19,9 @@ public class MotoristaService{
 
     public void save(Motorista motorista) {
         motoristaRepository.save(motorista);
+    }
+
+    public Motorista find(UUID motorista) {
+        return motoristaRepository.findById(motorista).orElse(null);
     }
 }

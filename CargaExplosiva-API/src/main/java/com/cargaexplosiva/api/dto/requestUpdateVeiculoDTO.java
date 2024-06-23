@@ -5,8 +5,10 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.Year;
 import java.util.Date;
+import java.util.UUID;
 
-public record requestSaveVeiculoDTO(
+public record requestUpdateVeiculoDTO(
+        @NotNull UUID id_veiculo,
         @NotBlank String placa,
         @NotBlank String marca,
         @NotBlank String modelo,
@@ -20,4 +22,5 @@ public record requestSaveVeiculoDTO(
         @NotNull boolean status,
         @NotNull Date dataCompra,
         @NotNull float valor
-){}
+){
+}

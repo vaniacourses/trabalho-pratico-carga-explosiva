@@ -22,13 +22,10 @@ public class Motorista extends Funcionario implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Column(unique = true, nullable = false)
     private long numCNH;
-    @Column(nullable = false, columnDefinition = "date")
     private Date validadeCNH;
-    @Column(nullable = false, length = 2)
+    @Column(length = 2)
     private String tipoCNH;
-    @Column(nullable = false)
     private int pontoCNH;
     private String CNH;
     private String funcoes;
@@ -50,5 +47,4 @@ public class Motorista extends Funcionario implements Serializable{
     private Set<ProblemaRelatado> problemaRelatados = new HashSet<>();
     @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
     private Set<VerificacaoDoVeiculo> verificacoes = new HashSet<>();
-
 }

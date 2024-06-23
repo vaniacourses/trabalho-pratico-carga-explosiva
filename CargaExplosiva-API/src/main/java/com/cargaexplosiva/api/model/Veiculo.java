@@ -6,10 +6,7 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Year;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -96,5 +93,17 @@ public class Veiculo implements Serializable {
         this.status = status;
         this.dataCompra = dataCompra;
         this.valor = valor;
+    }
+
+    public Optional<Motorista> getMotoristaAtual(){
+        try {
+            return this.getAtribuicaoVeiculoMotoristaSet()
+                    .stream()
+                    .filter(e -> e.getDataFim() == null)
+                    .findFirst()
+                    .map(AtribuicaoVeiculoMotorista::getMotorista);
+        }catch (Exception e){
+            return Optional.empty();
+        }
     }
 }
