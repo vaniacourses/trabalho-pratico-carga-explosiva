@@ -46,7 +46,7 @@ public class Veiculo implements Serializable {
     @Column(nullable = false)
     private boolean status;
     @Column(nullable = false)
-    private Date dataAdicao;
+    private Date dataCompra;
     private float valor;
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     private Set<AtribuicaoVeiculoMotorista> atribuicaoVeiculoMotoristaSet =
@@ -77,4 +77,24 @@ public class Veiculo implements Serializable {
     private Set<OSInterna> osInternas = new HashSet<>();
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     private Set<OSExterna> osExternas = new HashSet<>();
+
+    public Veiculo(String placa, String marca, String modelo,
+                   Year anoFabricacao, Year anoModelo, String tipo,
+                   long numRenavan, int capacidadeCarga, String numChassi,
+                   float totalKM, boolean status, Date dataCompra,
+                   float valor) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.AnoFabricacao = anoFabricacao;
+        this.anoModelo = anoModelo;
+        this.tipo = tipo;
+        this.numRenavan = numRenavan;
+        this.capacidadeCarga = capacidadeCarga;
+        this.numChassi = numChassi;
+        this.totalKM = totalKM;
+        this.status = status;
+        this.dataCompra = dataCompra;
+        this.valor = valor;
+    }
 }
