@@ -1,6 +1,6 @@
 package com.cargaexplosiva.api.controller;
 
-import com.cargaexplosiva.api.dto.AddVeiculoDTO;
+import com.cargaexplosiva.api.dto.requestSaveVeiculoDTO;
 import com.cargaexplosiva.api.service.VeiculoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class VeiculoController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveVeiculo(@RequestBody @Valid AddVeiculoDTO veiculoDTO){
+    public ResponseEntity<Object> saveVeiculo(@RequestBody @Valid requestSaveVeiculoDTO veiculoDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculoService.save(veiculoDTO));
     }
 }
