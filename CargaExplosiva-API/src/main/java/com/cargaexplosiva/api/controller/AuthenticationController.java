@@ -1,6 +1,6 @@
 package com.cargaexplosiva.api.controller;
 
-import com.cargaexplosiva.api.dto.RequestLoginDTO;
+import com.cargaexplosiva.api.dto.requestLoginDTO;
 import com.cargaexplosiva.api.infra.security.token.TokenService;
 import com.cargaexplosiva.api.infra.security.userdetails.JWTUserDetailsService;
 
@@ -42,7 +42,7 @@ public class AuthenticationController{
     }
 
     @PostMapping
-    public ResponseEntity<Object> login(@RequestBody @Valid RequestLoginDTO request) throws Exception{
+    public ResponseEntity<Object> login(@RequestBody @Valid requestLoginDTO request) throws Exception{
         try {
             authenticate(request.email(), request.password());
         }catch (Exception e){
