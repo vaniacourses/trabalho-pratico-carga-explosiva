@@ -24,7 +24,12 @@ public class VeiculoController {
 
     @PostMapping
     public ResponseEntity<Object> saveVeiculo(@RequestBody @Valid requestSaveVeiculoDTO veiculoDTO){
-        return ResponseEntity.status(HttpStatus.CREATED).body(veiculoService.save(veiculoDTO));
+        try {
+            var veiculo = veiculoService.save(veiculoDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(veiculo);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao cadastrar veiculo.");
+        }
     }
 
     @GetMapping("/{id}")
