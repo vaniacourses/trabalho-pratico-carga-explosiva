@@ -34,11 +34,10 @@ public abstract class Funcionario extends Endereco implements Serializable{
     private String password;
     @Column(unique = true)
     private String numRG;
-    private int telefone;
+    private long telefone;
     private String experienciaProfissional;
     @Column(nullable = false)
     private FuncionarioRole role;
     private Date dataContratacao;
     private Date dataTerminoContrato;
-
 }

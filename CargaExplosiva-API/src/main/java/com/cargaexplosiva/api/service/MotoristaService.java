@@ -1,7 +1,10 @@
 package com.cargaexplosiva.api.service;
 
+import com.cargaexplosiva.api.dto.requestRegisterGerenteDTO;
+import com.cargaexplosiva.api.model.FuncionarioRole;
 import com.cargaexplosiva.api.model.Motorista;
 import com.cargaexplosiva.api.repository.MotoristaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +20,11 @@ public class MotoristaService{
         this.motoristaRepository = motoristaRepository;
     }
 
-    public void save(Motorista motorista) {
+    public void save(requestRegisterGerenteDTO motoristaDTO){
+        var motorista = new Motorista();
+        BeanUtils.copyProperties(motoristaDTO, motorista);
+        motorista.setRole(FuncionarioRole.MOTORISTA);
+        motorista.setAtivo(true);
         motoristaRepository.save(motorista);
-    }
-
-    public Motorista find(UUID motorista) {
-        return motoristaRepository.findById(motorista).orElse(null);
     }
 }

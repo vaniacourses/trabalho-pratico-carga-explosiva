@@ -24,8 +24,4 @@ public class GerenteController{
         this.gerenteService = gerenteService;
     }
 
-    @GetMapping("/all")
-    ResponseEntity<List<Gerente>> findAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(gerenteService.getAll());
-    }
 }

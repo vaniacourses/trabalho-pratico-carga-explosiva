@@ -24,7 +24,6 @@ public abstract class Endereco {
     @Column(length = 50)
     private String cidade;
     @Column(length = 50)
-    @Value("Brasil")
     private String pais;
 
 }
