@@ -2,10 +2,8 @@ package com.cargaexplosiva.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,6 +20,9 @@ public class ControlePresenca implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Transient
+    private HorasTrabalhadas calculadora;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_presenca;
@@ -31,6 +32,28 @@ public class ControlePresenca implements Serializable {
     private float horasDeTrabalhos;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
-    @JoinColumn(name = "id_motorista")
+    @JoinColumn(name = "id_motorista", nullable = false)
     private Motorista motorista;
+
+    public ControlePresenca(Timestamp entrada, Motorista motorista) {
+        this.entrada = entrada;
+        this.motorista = motorista;
+    }
+
+    public boolean setSaida(Timestamp saida) {
+        if(saida.before(this.entrada)){
+            this.saida = saida;
+            return true;
+        }
+        return false;
+    }
+
+    public void calcularHorasTrabalhadas(@NotEmpty HorasTrabalhadas calculadora){
+        this.setCalculadora(calculadora);
+        this.setHorasDeTrabalhos(calcular());
+    }
+
+    public float calcular(){
+        return this.getCalculadora().getHorasTrabalhadas(this);
+    }
 }
