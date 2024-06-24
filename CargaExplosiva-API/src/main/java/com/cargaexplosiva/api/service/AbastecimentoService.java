@@ -1,13 +1,15 @@
 package com.cargaexplosiva.api.service;
 
-import com.cargaexplosiva.api.dto.requestSaveAbastecimentoDTO;
-import com.cargaexplosiva.api.dto.responseSaveAbastecimentoDTO;
+import com.cargaexplosiva.api.dto.*;
 import com.cargaexplosiva.api.model.Abastecimento;
 import com.cargaexplosiva.api.repository.AbastecimentoRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,20 +21,31 @@ public class AbastecimentoService {
         this.abastecimentoRepository = abastecimentoRepository;
     }
 
-    public Object save(requestSaveAbastecimentoDTO abastecimentoDTO) {
+    public Object save(requestSaveAbastecimentoDTO abastecimentoDTO){
         var abastecimento = new Abastecimento();
         BeanUtils.copyProperties(abastecimentoDTO, abastecimento);
         abastecimento = abastecimentoRepository.save(abastecimento);
         return new responseSaveAbastecimentoDTO(abastecimento);
     }
 
-    public Abastecimento findById(UUID id) {
-        return abastecimentoRepository.findById(id).orElse(null);
+    public ResponseEntity<Object> getOne(UUID id) {
+        var abastecimento = abastecimentoRepository.findById(id);
+        if (abastecimento.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(abastecimento.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Abastecimento não encontrado.");
+        }
     }
 
-    /*public List<Abastecimento> findAllByVeiculoId(UUID veiculoId) {
-        return abastecimentoRepository.findByVeiculoId(veiculoId);
-    }*/
+    public ResponseEntity<Object> update(requestUpdateAbastecimentoDTO abastecimentoDTO){
+        Optional<Abastecimento> abastecimentoO = abastecimentoRepository.findById(abastecimentoDTO.id_abastecimento());
+        if (abastecimentoO.isEmpty())  {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Abastecimento não encontrado.");
+        }
+        var abastecimentoModel = abastecimentoO.get();
+        BeanUtils.copyProperties(abastecimentoDTO, abastecimentoModel);
+        return ResponseEntity.status(HttpStatus.OK).body(abastecimentoRepository.save(abastecimentoModel));
+    }
 
     public void delete(UUID id) {
         abastecimentoRepository.deleteById(id);

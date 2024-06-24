@@ -9,5 +9,4 @@ import java.util.UUID;
 
 @Repository
 public interface AbastecimentoRepository extends JpaRepository<Abastecimento, UUID> {
-    //List<Abastecimento> findByVeiculoId(UUID veiculoId);
 }
