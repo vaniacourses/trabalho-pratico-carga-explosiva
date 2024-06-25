@@ -17,7 +17,6 @@ public class JWTUserDetails implements UserDetails{
         this.funcionario = funcionario;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (funcionario.getRole() == FuncionarioRole.ADMINISTRADOR) {
