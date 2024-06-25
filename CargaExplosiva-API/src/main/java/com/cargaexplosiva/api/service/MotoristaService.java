@@ -29,4 +29,9 @@ public class MotoristaService{
         motorista.setAtivo(true);
         motoristaRepository.save(motorista);
     }
+
+    public Motorista find(String username){
+        var motoristaOptional = motoristaRepository.findByEmail(username);
+        return motoristaOptional.orElse(null);
+    }
 }

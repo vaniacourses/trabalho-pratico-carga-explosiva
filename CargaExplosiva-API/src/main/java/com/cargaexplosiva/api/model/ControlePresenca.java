@@ -2,7 +2,6 @@ package com.cargaexplosiva.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.io.Serial;
@@ -35,25 +34,19 @@ public class ControlePresenca implements Serializable {
     @JoinColumn(name = "id_motorista", nullable = false)
     private Motorista motorista;
 
-    public ControlePresenca(Timestamp entrada, Motorista motorista) {
+    public ControlePresenca(Motorista motorista, Timestamp entrada,
+                            HorasTrabalhadas calculadora){
         this.entrada = entrada;
         this.motorista = motorista;
+        this.calculadora = calculadora;
     }
 
-    public boolean setSaida(Timestamp saida) {
-        if(saida.before(this.entrada)){
-            this.saida = saida;
-            return true;
-        }
-        return false;
+    public void calcularHorasTrabalhadas(HorasTrabalhadas calculadora){
+        this.calculadora = calculadora;
+        this.horasDeTrabalhos = this.calcular();
     }
 
-    public void calcularHorasTrabalhadas(@NotEmpty HorasTrabalhadas calculadora){
-        this.setCalculadora(calculadora);
-        this.setHorasDeTrabalhos(calcular());
-    }
-
-    public float calcular(){
-        return this.getCalculadora().getHorasTrabalhadas(this);
+    private float calcular(){
+        return this.calculadora.getHorasTrabalhadas(this);
     }
 }

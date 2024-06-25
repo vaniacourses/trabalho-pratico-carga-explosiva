@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                                 "register/gerente/mecanico").hasAuthority(FuncionarioRole.ADMINISTRADOR.name())
                         .requestMatchers("register/mecanico").hasAnyAuthority(FuncionarioRole.GERENTE_MECANICO.name())
                         .requestMatchers("register/motorista").hasAnyAuthority(FuncionarioRole.GERENTE_FROTA.name())
+                        .requestMatchers("bater-ponto").hasAnyAuthority(FuncionarioRole.MOTORISTA.name())
                         .requestMatchers(HttpMethod.GET).permitAll()
                         .anyRequest().permitAll()
                 )
