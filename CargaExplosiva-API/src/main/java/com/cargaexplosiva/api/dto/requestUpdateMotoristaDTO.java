@@ -1,11 +1,12 @@
 package com.cargaexplosiva.api.dto;
 
+import java.sql.Date;
+import java.util.UUID;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.sql.Date;
-
-public record requestRegisterMotoristaDTO(
+public record requestUpdateMotoristaDTO(
         @NotNull long numCPF,
         @NotBlank String nome,
         @NotBlank String sobrenome,
@@ -30,4 +31,4 @@ public record requestRegisterMotoristaDTO(
         int pontoCNH,
         String CNH,
         String funcoes
-){}
+) {}

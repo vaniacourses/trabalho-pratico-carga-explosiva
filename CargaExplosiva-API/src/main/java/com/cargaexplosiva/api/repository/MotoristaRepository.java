@@ -1,15 +1,21 @@
 package com.cargaexplosiva.api.repository;
 
-import com.cargaexplosiva.api.model.Motorista;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-import java.util.UUID;
+import com.cargaexplosiva.api.model.Motorista;
+
 
 @Repository
 public interface MotoristaRepository extends JpaRepository<Motorista, UUID> {
 
     Optional<Motorista> findByEmail(String email);
+    
+    Optional<Motorista> findByNumCPF(long numCPF);
+
+    void deleteByNumCPF(long numCPF);
 
 }
