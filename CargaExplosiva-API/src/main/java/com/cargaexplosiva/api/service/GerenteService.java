@@ -5,6 +5,7 @@ import com.cargaexplosiva.api.model.FuncionarioRole;
 import com.cargaexplosiva.api.model.Gerente;
 import com.cargaexplosiva.api.repository.GerenteRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class GerenteService{
     public void saveGerenteFrota(requestRegisterGerenteDTO gerentDTO){
         var gerente = new Gerente();
         BeanUtils.copyProperties(gerentDTO, gerente);
+        gerente.setPassword(new BCryptPasswordEncoder().encode(gerentDTO.password()));
         gerente.setRole(FuncionarioRole.GERENTE_FROTA);
         gerenteRepository.save(gerente);
     }
@@ -28,6 +30,7 @@ public class GerenteService{
     public void saveGerenteMecanico(requestRegisterGerenteDTO gerentDTO){
         var gerente = new Gerente();
         BeanUtils.copyProperties(gerentDTO, gerente);
+        gerente.setPassword(new BCryptPasswordEncoder().encode(gerentDTO.password()));
         gerente.setRole(FuncionarioRole.GERENTE_MECANICO);
         gerenteRepository.save(gerente);
     }

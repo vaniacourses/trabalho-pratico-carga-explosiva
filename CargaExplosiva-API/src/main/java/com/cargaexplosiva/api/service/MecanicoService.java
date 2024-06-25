@@ -5,6 +5,7 @@ import com.cargaexplosiva.api.model.FuncionarioRole;
 import com.cargaexplosiva.api.model.Mecanico;
 import com.cargaexplosiva.api.repository.MecanicoRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class MecanicoService {
     public void save(requestRegisterMecanicoDTO mecanicoDTO) {
         var mecanico = new Mecanico();
         BeanUtils.copyProperties(mecanicoDTO, mecanico);
+        mecanico.setPassword(new BCryptPasswordEncoder().encode(mecanicoDTO.password()));
         mecanico.setRole(FuncionarioRole.MECANICO);
         mecanicoRepository.save(mecanico);
     }

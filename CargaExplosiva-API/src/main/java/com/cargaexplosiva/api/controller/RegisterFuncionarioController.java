@@ -2,6 +2,7 @@ package com.cargaexplosiva.api.controller;
 
 import com.cargaexplosiva.api.dto.requestRegisterGerenteDTO;
 import com.cargaexplosiva.api.dto.requestRegisterMecanicoDTO;
+import com.cargaexplosiva.api.service.AdministradorService;
 import com.cargaexplosiva.api.service.GerenteService;
 import com.cargaexplosiva.api.service.MecanicoService;
 import com.cargaexplosiva.api.service.MotoristaService;
@@ -20,11 +21,13 @@ public class RegisterFuncionarioController {
     private final GerenteService gerenteService;
     private final MecanicoService mecanicoService;
     private final MotoristaService motoristaService;
+    private final AdministradorService administradorService;
 
-    public RegisterFuncionarioController(GerenteService gerenteService, MecanicoService mecanicoService, MotoristaService motoristaService) {
+    public RegisterFuncionarioController(GerenteService gerenteService, MecanicoService mecanicoService, MotoristaService motoristaService, AdministradorService administradorService) {
         this.gerenteService = gerenteService;
         this.mecanicoService = mecanicoService;
         this.motoristaService = motoristaService;
+        this.administradorService = administradorService;
     }
 
     @PostMapping("/gerente/frota")
@@ -73,6 +76,18 @@ public class RegisterFuncionarioController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body("Motorista " +
                 "cadastrado com sucesso.");
+    }
+
+    @PostMapping("/administrador")
+    ResponseEntity<Object> registerAdministrador(){
+        try {
+            administradorService.save();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro " +
+                    "ao cadastrar administrador.");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                "Administrador cadastrado com sucesso.");
     }
 
 }

@@ -5,6 +5,7 @@ import com.cargaexplosiva.api.model.FuncionarioRole;
 import com.cargaexplosiva.api.model.Motorista;
 import com.cargaexplosiva.api.repository.MotoristaRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class MotoristaService{
     public void save(requestRegisterGerenteDTO motoristaDTO){
         var motorista = new Motorista();
         BeanUtils.copyProperties(motoristaDTO, motorista);
+        motorista.setPassword(new BCryptPasswordEncoder().encode(motoristaDTO.password()));
         motorista.setRole(FuncionarioRole.MOTORISTA);
         motorista.setAtivo(true);
         motoristaRepository.save(motorista);

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.sql.Date;
 
 public record requestRegisterGerenteDTO(
-        @NotNull long numCPF,
+        @NotNull String numCPF,
         @NotBlank String nome,
         @NotBlank String sobrenome,
         @NotNull Date dataNascimento,

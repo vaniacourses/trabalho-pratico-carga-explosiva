@@ -22,8 +22,8 @@ public abstract class Funcionario extends Endereco implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id_funcionario;
 
-    @Column(unique = true)
-    private long numCPF;
+    @Column(unique = true, nullable = false)
+    private String numCPF;
     @Column(length = 50)
     private String nome;
     @Column(length = 70)

@@ -1,5 +1,6 @@
 package com.cargaexplosiva.api.infra.security;
 
+import com.cargaexplosiva.api.model.FuncionarioRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -35,7 +36,11 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "auth/login").permitAll()
+                        .requestMatchers("auth/login", "register/administrador").permitAll()
+                        .requestMatchers("register/gerente/frota",
+                                "register/gerente/mecanico").hasAuthority(FuncionarioRole.ADMINISTRADOR.name())
+                        .requestMatchers("register/mecanico").hasAnyAuthority(FuncionarioRole.GERENTE_MECANICO.name())
+                        .requestMatchers("register/motorista").hasAnyAuthority(FuncionarioRole.GERENTE_FROTA.name())
                         .requestMatchers(HttpMethod.GET).permitAll()
                         .anyRequest().permitAll()
                 )

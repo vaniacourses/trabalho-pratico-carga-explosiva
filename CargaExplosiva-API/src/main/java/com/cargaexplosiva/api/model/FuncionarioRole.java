@@ -2,11 +2,11 @@ package com.cargaexplosiva.api.model;
 
 public enum FuncionarioRole{
 
-    ADMINISTRADOR("administrador"),
-    GERENTE_FROTA("gerente_frota"),
-    GERENTE_MECANICO("gerente_mecanico"),
-    MECANICO("mecanico"),
-    MOTORISTA("motorista");
+    ADMINISTRADOR("ADMINISTRADOR"),
+    GERENTE_FROTA("GERENTE-FROTA"),
+    GERENTE_MECANICO("GERENTE-MECANICO"),
+    MECANICO("MECANICO"),
+    MOTORISTA("MOTORISTA");
 
     private final String role;
 
