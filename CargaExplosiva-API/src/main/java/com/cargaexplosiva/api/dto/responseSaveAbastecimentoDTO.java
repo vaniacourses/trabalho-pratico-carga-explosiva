@@ -17,6 +17,13 @@ public record responseSaveAbastecimentoDTO(
         @NotNull float km,
         @NotBlank String notaFiscal,
         @NotNull float volume,
+        @NotNull int cep,
+        @NotBlank String rua,
+        @NotNull int numero,
+        String complemento,
+        @NotBlank String bairro,
+        @NotBlank String cidade,
+        @NotBlank String pais,
         Motorista motorista,
         Veiculo veiculo
 ) {
@@ -28,6 +35,13 @@ public record responseSaveAbastecimentoDTO(
                 abastecimento.getKm(),
                 abastecimento.getNotaFiscal(),
                 abastecimento.getVolume(),
+                abastecimento.getCep(),
+                abastecimento.getRua(),
+                abastecimento.getNumero(),
+                abastecimento.getComplemento(),
+                abastecimento.getBairro(),
+                abastecimento.getCidade(),
+                abastecimento.getPais(),
                 abastecimento.getMotorista(),
                 abastecimento.getVeiculo());
     }

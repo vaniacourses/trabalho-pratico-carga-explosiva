@@ -16,6 +16,13 @@ public record requestUpdateAbastecimentoDTO(
         @NotNull float km,
         @NotBlank String notaFiscal,
         @NotNull float volume,
+        @NotNull int cep,
+        @NotBlank String rua,
+        @NotNull int numero,
+        String complemento,
+        @NotBlank String bairro,
+        @NotBlank String cidade,
+        @NotBlank String pais,
         Motorista motorista,
         Veiculo veiculo
 ){}
