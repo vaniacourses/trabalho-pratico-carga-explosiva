@@ -1,9 +1,13 @@
 package com.cargaexplosiva.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.cargaexplosiva.api.dto.responseOneMotorista;
+import com.cargaexplosiva.api.dto.responseSaveVeiculoDTO;
+import com.cargaexplosiva.api.model.Veiculo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,17 +41,20 @@ public class MotoristaService{
     }
 
     public ResponseEntity<Object> getOne(String numCPF){
-        var motorista = motoristaRepository.findByNumCPF(numCPF);
+        Optional<Motorista> motorista = motoristaRepository.findByNumCPF(numCPF);
         if (motorista.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(motorista.get());
+            return ResponseEntity.status(HttpStatus.OK).body(new responseOneMotorista(motorista.get()));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motorista não encontrado.");
         }
     }
 
-    public List<Motorista> getAll(){
-        return motoristaRepository.findAll();
-        
+    public List<responseOneMotorista> getAll(){
+         var motoristas =motoristaRepository.findAll();
+         List<responseOneMotorista> response = new ArrayList<>();
+         motoristas.forEach(e -> response.add(new responseOneMotorista(e)));
+
+        return response;
     }
     public ResponseEntity<Object> update(requestUpdateMotoristaDTO motoristaDTO){
         Optional<Motorista> motorista = motoristaRepository.findByNumCPF(motoristaDTO.numCPF());

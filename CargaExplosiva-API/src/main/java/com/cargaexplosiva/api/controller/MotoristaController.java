@@ -1,5 +1,6 @@
 package com.cargaexplosiva.api.controller;
 
+import com.cargaexplosiva.api.dto.responseOneMotorista;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cargaexplosiva.api.dto.requestUpdateMotoristaDTO;
@@ -44,7 +45,7 @@ public class MotoristaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Motorista>> getAllMotorista(){
+    public ResponseEntity<List<responseOneMotorista>> getAllMotorista(){
         return ResponseEntity.status(HttpStatus.OK).body(motoristaService.getAll());
     }
 

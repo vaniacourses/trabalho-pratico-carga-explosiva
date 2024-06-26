@@ -1,6 +1,7 @@
 package com.cargaexplosiva.api.dto;
 
 import java.sql.Date;
+import java.util.Optional;
 
 import com.cargaexplosiva.api.model.Motorista;
 import jakarta.validation.constraints.NotBlank;
