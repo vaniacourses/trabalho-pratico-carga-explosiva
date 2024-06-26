@@ -14,8 +14,8 @@ public interface MotoristaRepository extends JpaRepository<Motorista, UUID> {
 
     Optional<Motorista> findByEmail(String email);
     
-    Optional<Motorista> findByNumCPF(long numCPF);
+    Optional<Motorista> findByNumCPF(String numCPF);
 
-    void deleteByNumCPF(long numCPF);
+    void deleteByNumCPF(String numCPF);
 
 }

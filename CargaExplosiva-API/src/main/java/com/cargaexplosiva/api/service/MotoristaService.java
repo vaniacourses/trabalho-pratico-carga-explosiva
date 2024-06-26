@@ -36,7 +36,7 @@ public class MotoristaService{
         motoristaRepository.save(motorista);
     }
 
-    public ResponseEntity<Object> getOne(long numCPF){
+    public ResponseEntity<Object> getOne(String numCPF){
         var motorista = motoristaRepository.findByNumCPF(numCPF);
         if (motorista.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(motorista.get());
@@ -68,7 +68,7 @@ public class MotoristaService{
         motoristaRepository.deleteById(id);
     }
 
-    public void delete(long numCPF){
+    public void delete(String numCPF){
         motoristaRepository.deleteByNumCPF(numCPF);
     }
 }

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record requestUpdateMotoristaDTO(
-        @NotNull long numCPF,
+        @NotNull String numCPF,
         @NotBlank String nome,
         @NotBlank String sobrenome,
         @NotNull Date dataNascimento,

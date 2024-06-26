@@ -39,10 +39,11 @@ public class MotoristaController {
     }
 
     @GetMapping("/{numCPF}")
-      public ResponseEntity<Object> getMotorista(@PathVariable(value = "numCPF") long numCPF){
+      public ResponseEntity<Object> getMotorista(@PathVariable(value = "numCPF") String numCPF){
         return motoristaService.getOne(numCPF);
     }
-    
+
+    @GetMapping
     public ResponseEntity<List<Motorista>> getAllMotorista(){
         return ResponseEntity.status(HttpStatus.OK).body(motoristaService.getAll());
     }
@@ -53,11 +54,8 @@ public class MotoristaController {
     }
 
     @DeleteMapping("/{numCPF}")
-    public ResponseEntity<Object> deleteVeiculo(@PathVariable(value = "numCPF") long numCPF){
+    public ResponseEntity<Object> deleteVeiculo(@PathVariable(value = "numCPF") String numCPF){
         motoristaService.delete(numCPF);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-    
-    
-
 }
