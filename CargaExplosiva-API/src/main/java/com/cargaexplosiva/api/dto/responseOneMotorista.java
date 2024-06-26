@@ -2,6 +2,7 @@ package com.cargaexplosiva.api.dto;
 
 import java.sql.Date;
 
+import com.cargaexplosiva.api.model.Motorista;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -29,4 +30,31 @@ public record responseOneMotorista(
         int pontoCNH,
         String CNH,
         String funcoes){
+
+    public responseOneMotorista(Motorista motorista){
+        this(
+                motorista.getNumCNH(),
+                motorista.getNome(),
+                motorista.getSobrenome(),
+                motorista.getDataNascimento(),
+                motorista.getEmail(),motorista.getNumRG(),
+                motorista.getTelefone(),
+                motorista.getExperienciaProfissional(),
+                motorista.getDataContratacao(),
+                motorista.getDataTerminoContrato(),
+                motorista.getCep(),
+                motorista.getRua(),
+                motorista.getNumero(),
+                motorista.getComplemento(),
+                motorista.getBairro(),
+                motorista.getCidade(),
+                motorista.getPais(),
+                motorista.getNumCNH(),
+                motorista.getValidadeCNH(),
+                motorista.getTipoCNH(),
+                motorista.getPontoCNH(),
+                motorista.getCNH(),
+                motorista.getFuncoes()
+        );
+    }
 }
