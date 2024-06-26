@@ -13,7 +13,7 @@ public record requestRegisterMecanicoDTO(
         @NotBlank String email,
         @NotBlank String password,
         @NotBlank String numRG,
-        @NotNull int telefone,
+        @NotNull long telefone,
         @NotBlank String experienciaProfissional,
         @NotNull Date dataContratacao,
         Date dataTerminoContrato,

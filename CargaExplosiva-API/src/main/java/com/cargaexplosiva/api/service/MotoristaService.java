@@ -55,7 +55,7 @@ public class MotoristaService{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motorista não encontrado.");
         }
         var motoristaModel = motorista.get();
-        BeanUtils.copyProperties(motoristaDTO, motorista);
+        BeanUtils.copyProperties(motoristaDTO, motoristaModel);
         return ResponseEntity.status(HttpStatus.OK).body(motoristaRepository.save(motoristaModel));
     }
 

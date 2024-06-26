@@ -11,9 +11,8 @@ public record responseOneMotorista(
         @NotBlank String sobrenome,
         @NotNull Date dataNascimento,
         @NotBlank String email,
-        @NotBlank String password,
         @NotBlank String numRG,
-        @NotNull int telefone,
+        @NotNull long telefone,
         @NotBlank String experienciaProfissional,
         @NotNull Date dataContratacao,
         Date dataTerminoContrato,
@@ -30,6 +29,4 @@ public record responseOneMotorista(
         int pontoCNH,
         String CNH,
         String funcoes){
-        
-
 }
