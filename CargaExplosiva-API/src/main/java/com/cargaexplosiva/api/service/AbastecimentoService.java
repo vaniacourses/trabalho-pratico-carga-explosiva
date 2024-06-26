@@ -30,11 +30,9 @@ public class AbastecimentoService {
 
     public ResponseEntity<Object> getOne(UUID id) {
         var abastecimento = abastecimentoRepository.findById(id);
-        if (abastecimento.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(abastecimento.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Abastecimento não encontrado.");
-        }
+        return abastecimento.<ResponseEntity<Object>>
+                map(value -> ResponseEntity.status(HttpStatus.OK).body(value))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Abastecimento não encontrado."));
     }
 
     public ResponseEntity<Object> update(requestUpdateAbastecimentoDTO abastecimentoDTO){
