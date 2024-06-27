@@ -2,6 +2,7 @@ package com.cargaexplosiva.api.controller;
 
 import com.cargaexplosiva.api.dto.requestRegisterGerenteDTO;
 import com.cargaexplosiva.api.dto.requestRegisterMecanicoDTO;
+import com.cargaexplosiva.api.dto.requestRegisterMotoristaDTO;
 import com.cargaexplosiva.api.service.AdministradorService;
 import com.cargaexplosiva.api.service.GerenteService;
 import com.cargaexplosiva.api.service.MecanicoService;
@@ -23,7 +24,10 @@ public class RegisterFuncionarioController {
     private final MotoristaService motoristaService;
     private final AdministradorService administradorService;
 
-    public RegisterFuncionarioController(GerenteService gerenteService, MecanicoService mecanicoService, MotoristaService motoristaService, AdministradorService administradorService) {
+    public RegisterFuncionarioController(GerenteService gerenteService,
+                                         MecanicoService mecanicoService,
+                                         MotoristaService motoristaService,
+                                         AdministradorService administradorService) {
         this.gerenteService = gerenteService;
         this.mecanicoService = mecanicoService;
         this.motoristaService = motoristaService;
@@ -55,7 +59,7 @@ public class RegisterFuncionarioController {
     }
 
     @PostMapping("/motorista")
-    ResponseEntity<Object> registerMotorista(@RequestBody @Valid requestRegisterGerenteDTO motoristaDTO){
+    ResponseEntity<Object> registerMotorista(@RequestBody @Valid requestRegisterMotoristaDTO motoristaDTO){
         try {
             motoristaService.save(motoristaDTO);
         }catch (Exception e){
@@ -72,9 +76,9 @@ public class RegisterFuncionarioController {
             mecanicoService.save(mecanicoDTO);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro " +
-                    "ao cadastrar motorista.");
+                    "ao cadastrar mecanico.");
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body("Motorista " +
+        return ResponseEntity.status(HttpStatus.CREATED).body("Mecanico " +
                 "cadastrado com sucesso.");
     }
 

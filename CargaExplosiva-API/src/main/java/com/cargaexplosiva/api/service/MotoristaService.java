@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.cargaexplosiva.api.dto.responseOneMotorista;
-import com.cargaexplosiva.api.dto.responseSaveVeiculoDTO;
+import com.cargaexplosiva.api.dto.*;
 import com.cargaexplosiva.api.model.Veiculo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cargaexplosiva.api.dto.requestRegisterGerenteDTO;
-import com.cargaexplosiva.api.dto.requestUpdateMotoristaDTO;
 import com.cargaexplosiva.api.model.FuncionarioRole;
 import com.cargaexplosiva.api.model.Motorista;
 import com.cargaexplosiva.api.repository.MotoristaRepository;
@@ -31,7 +28,7 @@ public class MotoristaService{
         this.motoristaRepository = motoristaRepository;
     }
 
-    public void save(requestRegisterGerenteDTO motoristaDTO){
+    public void save(requestRegisterMotoristaDTO motoristaDTO){
         var motorista = new Motorista();
         BeanUtils.copyProperties(motoristaDTO, motorista);
         motorista.setPassword(new BCryptPasswordEncoder().encode(motoristaDTO.password()));
@@ -42,11 +39,11 @@ public class MotoristaService{
 
     public ResponseEntity<Object> getOne(String numCPF){
         Optional<Motorista> motorista = motoristaRepository.findByNumCPF(numCPF);
-        if (motorista.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(new responseOneMotorista(motorista.get()));
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motorista não encontrado.");
-        }
+        return motorista.<ResponseEntity<Object>>map(
+                value ->
+                        ResponseEntity.status(HttpStatus.OK).body(new responseOneMotorista(value)))
+                .orElseGet(() ->
+                        ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motorista não encontrado."));
     }
 
     public List<responseOneMotorista> getAll(){
