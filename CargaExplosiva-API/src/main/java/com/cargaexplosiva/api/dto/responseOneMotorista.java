@@ -2,12 +2,14 @@ package com.cargaexplosiva.api.dto;
 
 import java.sql.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.cargaexplosiva.api.model.Motorista;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record responseOneMotorista(
+        @NotNull UUID id_funcionario,
         @NotNull long numCPF,
         @NotBlank String nome,
         @NotBlank String sobrenome,
@@ -34,6 +36,7 @@ public record responseOneMotorista(
 
     public responseOneMotorista(Motorista motorista){
         this(
+                motorista.getId_funcionario(),
                 motorista.getNumCNH(),
                 motorista.getNome(),
                 motorista.getSobrenome(),

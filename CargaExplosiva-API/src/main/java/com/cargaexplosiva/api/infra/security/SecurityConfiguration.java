@@ -38,9 +38,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("auth/login", "register/administrador").permitAll()
                         .requestMatchers("register/gerente/frota",
-                                "register/gerente/mecanico").hasAuthority(FuncionarioRole.ADMINISTRADOR.name())
-                        .requestMatchers("register/mecanico").hasAnyAuthority(FuncionarioRole.GERENTE_MECANICO.name())
-                        .requestMatchers("register/motorista").hasAnyAuthority(FuncionarioRole.GERENTE_FROTA.name())
+                                "register/gerente/mecanico").permitAll()
+                        .requestMatchers("register/mecanico").permitAll()
+                        .requestMatchers("register/motorista").permitAll()
                         .requestMatchers("bater-ponto").hasAnyAuthority(FuncionarioRole.MOTORISTA.name())
                         .requestMatchers(HttpMethod.GET).permitAll()
                         .anyRequest().permitAll()
