@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record responseOneMotorista(
         @NotNull UUID id_funcionario,
-        @NotNull long numCPF,
+        @NotNull String numCPF,
         @NotBlank String nome,
         @NotBlank String sobrenome,
         @NotNull Date dataNascimento,
@@ -37,7 +37,7 @@ public record responseOneMotorista(
     public responseOneMotorista(Motorista motorista){
         this(
                 motorista.getId_funcionario(),
-                motorista.getNumCNH(),
+                motorista.getNumCPF(),
                 motorista.getNome(),
                 motorista.getSobrenome(),
                 motorista.getDataNascimento(),
