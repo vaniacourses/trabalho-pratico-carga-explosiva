@@ -1,0 +1,35 @@
+{
+    --grey-scale-1: #F7F7F7;
+    --grey-scale-2: #CFCFCF;
+    --grey-scale-3: #A6A6A6;
+    --grey-scale-4: #7D7D7D;
+    --grey-scale-5: #505050;
+
+/* Color Navbar */
+
+    --bg-color-nav: #007BFF;
+    --bg-hover-color-nav: #FFFFFF;
+    --text-color-nav: #FFFFFF;
+    --text--hover-color-nav: #6C757D;
+
+    --border-dropdown-nav: #FFFFFF;
+    --icon-color-nav-expansive: #FFFFFF;
+
+/* Color Footer */
+
+    --bg-color-footer: #007BFF;
+    --bg-hover-color-footer: #FFFFFF;
+    --text-color-footer: #FFFFFF;
+    --text--hover-color-footer: #6C757D;
+
+/* General Background Color */
+
+    --bg-general-color: #FFFFFF;
+
+/* Fonts */
+
+    --main-font: "Times New Roman", serif;
+    --nav-font: "Times New Roman", serif;
+    --title-font: monospace, serif;
+    --button-font: "Courier New", serif;
+}

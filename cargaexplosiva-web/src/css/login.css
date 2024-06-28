@@ -1,3 +1,5 @@
-.text-login{
-    color: red;
+form{
+    .text-error{
+        color: red;
+    }
 }

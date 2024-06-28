@@ -1,5 +1,6 @@
 package com.cargaexplosiva.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -70,8 +71,10 @@ public class Veiculo implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "id_seguro")
     )
     private Set<Seguro> seguros = new HashSet<>();
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     private Set<OSInterna> osInternas = new HashSet<>();
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     private Set<OSExterna> osExternas = new HashSet<>();
 
