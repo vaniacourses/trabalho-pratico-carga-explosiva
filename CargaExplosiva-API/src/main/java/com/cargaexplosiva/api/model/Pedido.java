@@ -34,7 +34,7 @@ public class Pedido implements Serializable {
     @JoinTable(name = "pedido-item")
     private Set<ItemDoEstoque> itens = new HashSet<>();
     @ManyToOne
-    @JoinColumn(name = "id_gerente", nullable = false)
+    @JoinColumn(name = "id_funcionario", nullable = false)
     private Gerente gerente;
 
 }
