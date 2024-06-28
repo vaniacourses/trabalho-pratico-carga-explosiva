@@ -1,10 +1,13 @@
-import './App.css'
-import Login from "./page/Login.tsx";
+import Navbar from "./components/Navbar.tsx";
+import {Outlet} from "react-router-dom";
 
 function App() {
 
   return (
-      <Login />
+      <div className={"App"}>
+        <Navbar />
+        <Outlet />
+      </div>
   )
 }
 

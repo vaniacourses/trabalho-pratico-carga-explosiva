@@ -25,7 +25,7 @@ public class ControlePresencaController {
 
     @PostMapping("/{ativo}")
     public ResponseEntity<Object> baterPonto(@PathVariable(value = "ativo") boolean isAtivo){
-        try {
+        try{
             UserDetails auth =
                     (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             controlePresencaService.baterPonto(auth,
