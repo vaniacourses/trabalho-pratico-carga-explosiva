@@ -1,11 +1,20 @@
-{
+:root{
+    /* Main Colors */
+
+    --primary-color: #4DA1FF;
+    --secondary-color: #AEBECB;
+    --accent-color: #FFD64D;
+    --success-color: #3CB371;
+    --background-color: #F0F2F4;
+    --text-color: #495057;
+
     --grey-scale-1: #F7F7F7;
     --grey-scale-2: #CFCFCF;
     --grey-scale-3: #A6A6A6;
     --grey-scale-4: #7D7D7D;
     --grey-scale-5: #505050;
 
-/* Color Navbar */
+    /* Color Navbar */
 
     --bg-color-nav: #007BFF;
     --bg-hover-color-nav: #FFFFFF;
@@ -15,18 +24,18 @@
     --border-dropdown-nav: #FFFFFF;
     --icon-color-nav-expansive: #FFFFFF;
 
-/* Color Footer */
+    /* Color Footer */
 
     --bg-color-footer: #007BFF;
     --bg-hover-color-footer: #FFFFFF;
     --text-color-footer: #FFFFFF;
     --text--hover-color-footer: #6C757D;
 
-/* General Background Color */
+    /* General Background Color */
 
     --bg-general-color: #FFFFFF;
 
-/* Fonts */
+    /* Fonts */
 
     --main-font: "Times New Roman", serif;
     --nav-font: "Times New Roman", serif;

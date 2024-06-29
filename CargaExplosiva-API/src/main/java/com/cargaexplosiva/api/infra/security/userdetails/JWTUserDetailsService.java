@@ -16,6 +16,10 @@ public class JWTUserDetailsService implements UserDetailsService {
         this.funcionarioRepository = funcionarioRepository;
     }
 
+    public Funcionario getFuncionario(String email) {
+        return funcionarioRepository.findByEmail(email);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Funcionario funcionario = funcionarioRepository.findByEmail(username);

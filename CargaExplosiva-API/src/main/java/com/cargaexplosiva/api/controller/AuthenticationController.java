@@ -1,9 +1,12 @@
 package com.cargaexplosiva.api.controller;
 
 import com.cargaexplosiva.api.dto.requestLoginDTO;
+import com.cargaexplosiva.api.dto.responseFuncionarioLoginDTO;
+import com.cargaexplosiva.api.dto.responseLoginDTO;
 import com.cargaexplosiva.api.infra.security.token.TokenService;
 import com.cargaexplosiva.api.infra.security.userdetails.JWTUserDetailsService;
 
+import com.cargaexplosiva.api.model.Funcionario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -49,9 +52,11 @@ public class AuthenticationController{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email" +
                     " e/ou senha invalido(s).");
         }
-        final UserDetails userDetails =
+        UserDetails userDetails =
                 userDetailsService.loadUserByUsername(request.email());
-        final String token = tokenService.generateToken(userDetails);
-        return ResponseEntity.status(HttpStatus.OK).body(token);
+        String token = tokenService.generateToken(userDetails);
+        Funcionario funcionario = userDetailsService.getFuncionario(request.email());
+        return ResponseEntity.status(HttpStatus.OK).body(new responseLoginDTO(new responseFuncionarioLoginDTO(funcionario),
+                token));
     }
 }
