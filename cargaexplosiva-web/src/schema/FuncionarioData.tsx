@@ -1,7 +1,7 @@
 import {z} from "zod";
 
 const capitalizeFirstLetter = (str: string) => {
-    return str.replace(/_/g, ' ')
+    return str.replace(/-/g, ' ')
         .replace(/\b\w/g,
             (char) => char.toUpperCase());
 };

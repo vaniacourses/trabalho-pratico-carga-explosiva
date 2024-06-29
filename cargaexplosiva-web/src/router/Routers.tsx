@@ -1,9 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "../App.tsx";
 import Login from "../page/Login.tsx";
-import ListaItensEstoque from "../page/ListaItensEstoque.tsx";
-import ItensEstoque from "../components/ItensEstoque.tsx";
 import {
+    pageCadastraItemEstoque,
     pageCadastraVeiculo,
     pageFuncionarios,
     pageHome,
@@ -21,7 +20,9 @@ import {
 } from "../contexts/auth/RequireRoleGerenteFrota.tsx";
 import CadastrarVeiculo from "../page/CadastrarVeiculo.tsx";
 import NotFoundPage from "../page/NotFoundPage.tsx";
-
+import ListaItensEstoque from "../page/ListaItensEstoque.tsx";
+import {RequireRoleMecanico} from "../contexts/auth/RequireRoleMecanico.tsx";
+import ItensEstoque from "../components/ItensEstoque.tsx";
 export const Routers = createBrowserRouter([
     {
         element: <App />,
@@ -61,6 +62,10 @@ export const Routers = createBrowserRouter([
             {
                 path: "*",
                 element: <NotFoundPage />
+            },
+            {
+                path: pageCadastraItemEstoque,
+                element: <RequireRoleMecanico><ItensEstoque /></RequireRoleMecanico>
             }
         ]
     }
