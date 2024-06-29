@@ -9,7 +9,7 @@ header {
     font-family: "Times New Roman", serif;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 
 .navbar-nav {

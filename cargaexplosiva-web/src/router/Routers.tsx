@@ -7,7 +7,7 @@ import {
     pageFuncionarios,
     pageHome,
     pageLogin, pageMinhaPagina,
-    pageOficina, pageOficinaEstoque, pageVeiculos
+    pageOficina, pageOficinaEstoque, pageOneVeiculo, pageVeiculos
 } from "./PageLink.tsx";
 import Oficina from "../page/Oficina.tsx";
 import Funcionarios from "../page/Funcionarios.tsx";
@@ -23,6 +23,7 @@ import NotFoundPage from "../page/NotFoundPage.tsx";
 import ListaItensEstoque from "../page/ListaItensEstoque.tsx";
 import {RequireRoleMecanico} from "../contexts/auth/RequireRoleMecanico.tsx";
 import ItensEstoque from "../components/ItensEstoque.tsx";
+import UmVeiculo from "../page/UmVeiculo.tsx";
 export const Routers = createBrowserRouter([
     {
         element: <App />,
@@ -66,6 +67,10 @@ export const Routers = createBrowserRouter([
             {
                 path: pageCadastraItemEstoque,
                 element: <RequireRoleMecanico><ItensEstoque /></RequireRoleMecanico>
+            },
+            {
+                path: pageOneVeiculo,
+                element:  <RequireAuth><UmVeiculo /></RequireAuth>
             }
         ]
     }

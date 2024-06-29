@@ -1,6 +1,7 @@
 import axios from "axios";
 import {LoginData} from "../schema/LoginData.tsx";
 import {getToken} from "../middleware/TokenControl.tsx";
+import {CadastrarVeiculoData} from "../schema/CadastrarVeiculoData.tsx";
 
 const api = axios.create({
     baseURL: "http://localhost:8080"
@@ -25,6 +26,18 @@ export const useAPI = () => ({
             }
             return {error: "Erro ao executar o login. Verifique os dados e" +
                     " tento novamente."}
+        }
+    },
+    cadastrarVeiculo: async (data: CadastrarVeiculoData) => {
+        try {
+            const response = await api.post("/veiculo", data)
+            return response.data
+        }catch (e){
+            if(axios.isAxiosError(e) && e.response && e.response.data){
+                return {error: e.response.data}
+            }
+            return {error: "Erro ao cadastrar o veiculo. Verifique os dados" +
+                    " ou entre em contado com o setor de TI."}
         }
     }
 })
