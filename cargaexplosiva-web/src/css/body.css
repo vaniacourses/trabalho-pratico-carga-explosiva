@@ -13,6 +13,8 @@
 
 header{
     grid-area: header;
+    width: fit-content;
+    display: flex;
 }
 
 main{
