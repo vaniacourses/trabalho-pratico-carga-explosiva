@@ -12,6 +12,7 @@ import Funcionarios from "../page/Funcionarios.tsx";
 import Home from "../page/Home.tsx";
 import MinhaPagina from "../page/MinhaPagina.tsx";
 import Veiculos from "../page/Veiculos.tsx";
+import {RequireAuth} from "../contexts/auth/RequireAuth.tsx";
 
 export const Routers = createBrowserRouter([
     {
@@ -19,27 +20,27 @@ export const Routers = createBrowserRouter([
         children: [
             {
                 path: pageHome,
-                element: <Home />
+                element: <RequireAuth><Home /></RequireAuth>
             },
             {
                 path: pageLogin,
-                element: <Login />
+                element: <RequireAuth><Login /></RequireAuth>
             },
             {
                 path: pageOficina,
-                element: <Oficina />
+                element: <RequireAuth><Oficina /></RequireAuth>
             },
             {
                 path: pageFuncionarios,
-                element: <Funcionarios />
+                element: <RequireAuth><Funcionarios /></RequireAuth>
             },
             {
                 path: pageMinhaPagina,
-                element: <MinhaPagina />
+                element: <RequireAuth><MinhaPagina /></RequireAuth>
             },
             {
                 path: pageVeiculos,
-                element: <Veiculos />
+                element: <RequireAuth><Veiculos /></RequireAuth>
             },
         ]
     }

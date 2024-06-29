@@ -23,7 +23,7 @@ public class Administrador extends Funcionario implements Serializable {
         this.setEmail("fulano@gmail.com");
         this.setRole(FuncionarioRole.ADMINISTRADOR);
         this.setNumRG("123456789");
-        this.setNumCPF("999.999.999-00");
+        this.setNumCPF("99999999999");
         this.setDataNascimento(Date.valueOf("1111-11-11"));
         this.setRua("Rua dos Bobos");
         this.setNumero(0);

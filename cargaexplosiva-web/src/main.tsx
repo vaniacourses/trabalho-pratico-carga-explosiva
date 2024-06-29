@@ -8,7 +8,10 @@ import 'bootstrap-icons/font/bootstrap-icons.min.css'
 
 import './css/root.css'
 import './css/body.css'
+import {AuthProvider} from "./contexts/auth/AuthProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <Router />,
+  <AuthProvider>
+      <Router />
+  </AuthProvider>,
 )
