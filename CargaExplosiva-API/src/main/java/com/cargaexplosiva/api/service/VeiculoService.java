@@ -3,7 +3,6 @@ package com.cargaexplosiva.api.service;
 import com.cargaexplosiva.api.dto.requestSaveVeiculoDTO;
 import com.cargaexplosiva.api.dto.requestUpdateVeiculoDTO;
 import com.cargaexplosiva.api.dto.responseOneVeiculo;
-import com.cargaexplosiva.api.dto.responseSaveVeiculoDTO;
 import com.cargaexplosiva.api.model.Veiculo;
 import com.cargaexplosiva.api.repository.VeiculoRepository;
 import org.springframework.beans.BeanUtils;
@@ -24,11 +23,11 @@ public class VeiculoService{
         this.veiculoRepository = veiculoRepository;
     }
 
-    public Object save(requestSaveVeiculoDTO veiculoDTO){
+    public UUID save(requestSaveVeiculoDTO veiculoDTO){
         var veiculo = new Veiculo();
         BeanUtils.copyProperties(veiculoDTO, veiculo);
         veiculo = veiculoRepository.save(veiculo);
-        return new responseSaveVeiculoDTO(veiculo);
+        return veiculo.getId_veiculo();
     }
 
     public ResponseEntity<Object> getOne(UUID id){
