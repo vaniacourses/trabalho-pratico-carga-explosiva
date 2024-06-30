@@ -7,7 +7,9 @@ import {
     GetVeiculoData,
     getVeiculoSchema
 } from "../schema/GetVeiculoData.tsx";
-import {setIDDesignarMotorista} from "../router/PageLink.tsx";
+import {pageVeiculos, setIDDesignarMotorista} from "../router/PageLink.tsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function UmVeiculo() {
 
@@ -44,6 +46,21 @@ function UmVeiculo() {
             navigate(setIDDesignarMotorista(veiculo?.id_veiculo))
         }else {
             alert("Erro ao solicitar.")
+        }
+    }
+
+    const exluir = async (id: string) =>{
+        try {
+            const response = await api.exluirVeiculo(id)
+            if (typeof response === 'number') {
+                navigate(pageVeiculos)
+            } else if (response && 'error' in response) {
+                alert("Erro ao excluir veículo");
+            } else {
+                alert("Erro inesperada ao excluir veículo");
+            }
+        }catch (e){
+            alert("Erro ao excluir veiculo.")
         }
     }
 
@@ -121,10 +138,14 @@ function UmVeiculo() {
                         </table>
                     </div>
                     {veiculo && !veiculo.id_motorista &&
-                        <div className="d-flex justify-content-end">
+                        <div className="d-flex justify-content-between">
                             <button className="btn btn-outline-info mt-3"
                                     onClick={designarMotorista}>
                                 Designar Motorista
+                            </button>
+                            <button className="btn btn-outline-danger mt-3"
+                                    onClick={() => exluir(veiculo.id_veiculo)}>
+                                <FontAwesomeIcon icon={faTrashAlt}/>
                             </button>
                         </div>
                     }

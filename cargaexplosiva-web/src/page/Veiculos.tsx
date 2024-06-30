@@ -42,7 +42,7 @@ function Veiculos() {
 
     return (
         <main>
-            <div className="container mt-4 mb-4 text-center">
+            <div className="page-veiculos container text-center pt-4 pb-4">
                 <h1>Veículos</h1>
                 <div className="d-flex justify-content-end">
                     <button className="btn btn-outline-info mt-3"

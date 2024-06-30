@@ -58,5 +58,13 @@ export const useAPI = () => ({
         }catch(e){
             return {error: "Erro ao solicitar os veiculos."}
         }
+    },
+    exluirVeiculo: async (id: string) => {
+        try {
+            const response = await api.delete(`/veiculo/${id}`)
+            return response.status
+        }catch (e){
+            return {error: "Erro ao solicitar a exclusão do veiculo."}
+        }
     }
 })
