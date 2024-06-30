@@ -41,7 +41,7 @@ function CadastrarVeiculo() {
     return (
         <main>
             <div className="mb-4 mt-4 container">
-                <div className='container-fluid text-center'>
+                <div className='container text-center'>
                     <h1 className="m-4">Cadastrar Veículo</h1>
                     <form onSubmit={handleSubmit(cadastrarVeiculo)}
                           className="text-center justify-content-center">

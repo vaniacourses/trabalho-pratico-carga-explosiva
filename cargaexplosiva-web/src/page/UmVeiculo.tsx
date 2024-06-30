@@ -52,7 +52,7 @@ function UmVeiculo() {
     const exluir = async (id: string) =>{
         try {
             const response = await api.exluirVeiculo(id)
-            if (typeof response === 'number') {
+            if (response == true) {
                 navigate(pageVeiculos)
             } else if (response && 'error') {
                 alert("Erro ao excluir veículo");
@@ -114,7 +114,7 @@ function UmVeiculo() {
                             </tr>
                             <tr>
                                 <th>Total KM</th>
-                                <td>{formatarValorParaExibicao(veiculo.totalKM)}</td>
+                                <td>{formatarValorParaExibicao(veiculo.totalKM)} KM</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
