@@ -6,6 +6,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center;
 }
 
 @media (min-width: 1200px) {
@@ -22,7 +23,7 @@
 
 @media (max-width: 991px) {
     .veiculo-card {
-        width: 9.5rem;
+        width: 10rem;
     }
 }
 
