@@ -37,6 +37,7 @@ public class GerenteController{
         }
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getGerente(@PathVariable(value = "id") UUID id) {
         return gerenteService.getById(id);
