@@ -6,6 +6,7 @@ import {
 } from "../schema/CadastrarVeiculoData.tsx";
 import {useAPI} from "../hooks/useApi.tsx";
 import {useNavigate} from "react-router-dom";
+import {setIDOneVeiculo} from "../router/PageLink.tsx";
 
 function CadastrarVeiculo() {
 
@@ -23,15 +24,13 @@ function CadastrarVeiculo() {
     })
 
     const cadastrarVeiculo = async (data: CadastrarVeiculoData) =>{
-        console.log(data)
         try {
             data.dataCompra = convertToYYYYMMDD(data.dataCompra);
             const response = await api.cadastrarVeiculo(data)
-            console.log(response)
             if(response.error){
                 alert(response.error)
             }else{
-                navigate(`/veiculos/${response}`);
+                navigate(setIDOneVeiculo(response));
             }
         }catch (e){
             alert("Erro ao cadastrar veiculo. Entre em contato com o setor" +

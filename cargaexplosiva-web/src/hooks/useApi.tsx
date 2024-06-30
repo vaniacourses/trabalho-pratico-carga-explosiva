@@ -39,5 +39,16 @@ export const useAPI = () => ({
             return {error: "Erro ao cadastrar o veiculo. Verifique os dados" +
                     " ou entre em contado com o setor de TI."}
         }
+    },
+    getOneVeiculo: async (data: string) => {
+        try {
+            const response = await api.get(`/veiculo/${data}`)
+            return response.data
+        }catch (e){
+            if(axios.isAxiosError(e) && e.response && e.response.data){
+                return {error: e.response.data}
+            }
+            return {error: "Erro ao localizar o veiculo."}
+        }
     }
 })

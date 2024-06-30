@@ -5,7 +5,7 @@ import {
     pageCadastraItemEstoque,
     pageCadastraVeiculo,
     pageFuncionarios,
-    pageHome,
+    pageHome, pageIDDesignarMotorista,
     pageLogin, pageMinhaPagina,
     pageOficina, pageOficinaEstoque, pageOneVeiculo, pageVeiculos
 } from "./PageLink.tsx";
@@ -24,6 +24,7 @@ import ListaItensEstoque from "../page/ListaItensEstoque.tsx";
 import {RequireRoleMecanico} from "../contexts/auth/RequireRoleMecanico.tsx";
 import ItensEstoque from "../components/ItensEstoque.tsx";
 import UmVeiculo from "../page/UmVeiculo.tsx";
+import DesignarMotorista from "../page/DesignarMotorista.tsx";
 export const Routers = createBrowserRouter([
     {
         element: <App />,
@@ -71,6 +72,10 @@ export const Routers = createBrowserRouter([
             {
                 path: pageOneVeiculo,
                 element:  <RequireAuth><UmVeiculo /></RequireAuth>
+            },
+            {
+                path: pageIDDesignarMotorista,
+                element: <RequireRoleGerenteFrota><DesignarMotorista /></RequireRoleGerenteFrota>
             }
         ]
     }
