@@ -13,7 +13,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 function UmVeiculo() {
 
-    const {id} = useParams();
+    const {id} = useParams()
     const api = useAPI()
     const navigate = useNavigate()
 
@@ -41,11 +41,11 @@ function UmVeiculo() {
         }
     }
 
-    function designarMotorista(){
-        if(veiculo){
-            navigate(setIDDesignarMotorista(veiculo?.id_veiculo))
-        }else {
-            alert("Erro ao solicitar.")
+    function designarMotorista() {
+        if (veiculo && veiculo.id_veiculo && typeof veiculo?.id_motorista == "string") {
+            navigate(setIDDesignarMotorista(veiculo.id_veiculo));
+        } else {
+            alert("Erro ao solicitar designar motorista.");
         }
     }
 
@@ -54,7 +54,7 @@ function UmVeiculo() {
             const response = await api.exluirVeiculo(id)
             if (typeof response === 'number') {
                 navigate(pageVeiculos)
-            } else if (response && 'error' in response) {
+            } else if (response && 'error') {
                 alert("Erro ao excluir veículo");
             } else {
                 alert("Erro inesperada ao excluir veículo");

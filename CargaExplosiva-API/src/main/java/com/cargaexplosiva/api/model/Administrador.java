@@ -18,15 +18,17 @@ public class Administrador extends Funcionario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public Administrador() {
-        this.setNome("Fulano");
-        this.setSobrenome("De Tal");
-        this.setEmail("fulano@gmail.com");
+        this.setNome("Administrador");
+        this.setSobrenome("Geral");
+        this.setEmail("adm@gmail.com");
         this.setRole(FuncionarioRole.ADMINISTRADOR);
-        this.setNumRG("123456789");
+        this.setNumRG("999999999");
         this.setNumCPF("99999999999");
-        this.setDataNascimento(Date.valueOf("1111-11-11"));
+        this.setDataNascimento(Date.valueOf("2024-07-01"));
         this.setRua("Rua dos Bobos");
-        this.setNumero(0);
+        this.setNumero(1);
+        this.setTelefone(999999999);
+        this.setDataContratacao(Date.valueOf("2024-07-01"));
         this.setBairro("Bairro do Fulano");
         this.setCidade("Cidade do Fulano");
         this.setPais("Brasil");

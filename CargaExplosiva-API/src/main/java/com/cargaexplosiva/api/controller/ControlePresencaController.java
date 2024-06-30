@@ -32,7 +32,8 @@ public class ControlePresencaController {
                     new Timestamp(System.currentTimeMillis()), isAtivo);
             return ResponseEntity.status(HttpStatus.OK).build();
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro " +
+                    "ao bater ponto, por favor tente novamente.");
         }
     }
 }

@@ -14,7 +14,7 @@ import {JSX} from "react";
 
 export const AuthProvider = ({children}: {children: JSX.Element}) => {
 
-    const [funcionario, setFuncionario] = useState<FuncionarioData | null>(null)
+    const [funcionario, setFuncionario] = useState<FuncionarioData | null>(null!)
     const api = useAPI()
 
     const login = async (data: LoginData)=> {

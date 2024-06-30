@@ -61,10 +61,13 @@ export const useAPI = () => ({
     },
     exluirVeiculo: async (id: string) => {
         try {
-            const response = await api.delete(`/veiculo/${id}`)
-            return response.status
+            await api.delete(`/veiculo/${id}`)
+            return true
         }catch (e){
-            return {error: "Erro ao solicitar a exclusão do veiculo."}
+            if(axios.isAxiosError(e) && e.response && e.response.data){
+                return {error: e.response.data}
+            }
+            return {error: "Erro ao localizar o veiculo."}
         }
     }
 })

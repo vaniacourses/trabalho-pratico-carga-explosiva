@@ -1,18 +1,19 @@
 import {z} from "zod";
 
-const capitalizeFirstLetter = (str: string) => {
-    return str.replace(/-/g, ' ')
+const capitalizeRole = (str: string) => {
+    return str.replace(/_/g, ' ')
         .replace(/\b\w/g,
             (char) => char.toUpperCase());
 };
 
 const formatCPF = (str: string): string => {
-    const cleaned = str.replace(/\D/g, '')
+    const cleaned = str.replace(/\D/g, '');
     return cleaned.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
 };
 
 const capitalizeWords = (str: string): string => {
-    return str.toLowerCase().replace(/(?:^|\s)\S/g, (char) => char.toUpperCase());
+    return str.toLowerCase().replace(/\b\w/g,
+        (char) => char.toUpperCase());
 };
 
 const formatDate = (date: Date): string => {
@@ -29,13 +30,13 @@ const parseDate = (str: string): Date => {
 
 export const funcionarioSchema = z.object({
     numCPF: z.string().trim()
-        .regex(/^\d+$/)
-        .transform(formatCPF),
-    nome: z.string().trim().transform(capitalizeWords),
-    sobrenome: z.string().trim().transform(capitalizeWords),
+        .regex(/^\d{11}$/, "CPF must have 11 digits")
+        .transform((str) => formatCPF(str)),
+    nome: z.string().trim().transform((str) => { return capitalizeWords(str)}),
+    sobrenome: z.string().trim().transform((str) => { return capitalizeWords(str)}),
     dataNascimento: z.string().transform((str) => formatDate(parseDate(str))),
     email: z.string().toLowerCase().trim(),
-    role: z.string().toLowerCase().trim().transform(capitalizeFirstLetter)
+    role: z.string().toLowerCase().trim().transform(capitalizeRole)
 })
 
 export type FuncionarioData = z.infer<typeof funcionarioSchema>;
