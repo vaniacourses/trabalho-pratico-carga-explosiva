@@ -1,6 +1,8 @@
 function Home() {
     return (
-        <span>Ola</span>
+        <main>
+            <h1>Carga Explosiva</h1>
+        </main>
     );
 }
 
