@@ -50,5 +50,13 @@ export const useAPI = () => ({
             }
             return {error: "Erro ao localizar o veiculo."}
         }
+    },
+    getAllVeiculo: async () => {
+        try {
+            const response = await api.get("/veiculo")
+            return response.data
+        }catch(e){
+            return {error: "Erro ao solicitar os veiculos."}
+        }
     }
 })

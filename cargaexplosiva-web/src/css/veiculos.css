@@ -1,0 +1,69 @@
+.veiculos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+@media (min-width: 1200px) {
+    .veiculo-card {
+        width: 12rem;
+    }
+}
+
+@media (max-width: 1199px) {
+    .veiculo-card {
+        width: 10.5rem ;
+    }
+}
+
+@media (max-width: 991px) {
+    .veiculo-card {
+        width: 9.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .veiculo-card {
+        width: 10rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .veiculo-card {
+        width: 10rem;
+    }
+}
+
+.veiculo-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.veiculo-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.veiculo-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #007BFF;
+}
+
+.veiculo-card p {
+    margin: 5px 0;
+}
+
+.veiculo-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.veiculo-card-link:hover {
+    text-decoration: none;
+}
