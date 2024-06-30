@@ -1,6 +1,7 @@
 package com.cargaexplosiva.api.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class Administrador extends Funcionario implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public Administrador() {
+    public Administrador(){
         this.setNome("Administrador");
         this.setSobrenome("Geral");
         this.setEmail("adm@gmail.com");
@@ -34,4 +35,5 @@ public class Administrador extends Funcionario implements Serializable {
         this.setPais("Brasil");
         this.setCep(99999999);
     }
+
 }

@@ -3,7 +3,6 @@ package com.cargaexplosiva.api.infra.security;
 import com.cargaexplosiva.api.model.FuncionarioRole;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -36,13 +35,18 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("auth/login", "register/administrador").permitAll()
-                        .requestMatchers("register/gerente/frota",
-                                "register/gerente/mecanico").hasAnyAuthority(FuncionarioRole.ADMINISTRADOR.name())
+                        .requestMatchers("authentication").permitAll()
+                        .requestMatchers("register/administrador").permitAll()
+                        .requestMatchers("motorista", "atribuir-veiculo" +
+                                "-motorista", "veiculo", "ordemservico", "register/motorista",
+                                "register/gerente/mecanico").hasAnyAuthority(FuncionarioRole.GERENTE_FROTA.name())
+                        .requestMatchers("register/gerente/frota", "gerente").hasAnyAuthority(FuncionarioRole.ADMINISTRADOR.name())
                         .requestMatchers("register/mecanico").hasAnyAuthority(FuncionarioRole.GERENTE_MECANICO.name())
-                        .requestMatchers("register/motorista").hasAnyAuthority(FuncionarioRole.GERENTE_FROTA.name())
-                        .requestMatchers("bater-ponto").hasAnyAuthority(FuncionarioRole.MOTORISTA.name())
-                        .requestMatchers(HttpMethod.DELETE, "veiculo/*").hasAnyAuthority(FuncionarioRole.ADMINISTRADOR.name(), FuncionarioRole.GERENTE_FROTA.name())
+                        .requestMatchers("bater-ponto", "abastecimento").hasAnyAuthority(FuncionarioRole.MOTORISTA.name())
+                        .requestMatchers("ordemservico/concluir/interna",
+                                "ordemservico/interna", "ordemservico" +
+                                        "/concluir/interna/", "item-do-estoque").hasAnyAuthority(FuncionarioRole.GERENTE_MECANICO.name(),
+                                FuncionarioRole.MECANICO.name())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
