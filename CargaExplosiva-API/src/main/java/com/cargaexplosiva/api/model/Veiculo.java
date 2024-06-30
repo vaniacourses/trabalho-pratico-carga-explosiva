@@ -46,24 +46,24 @@ public class Veiculo implements Serializable {
     @Column(nullable = false)
     private Date dataCompra;
     private float valor;
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<AtribuicaoVeiculoMotorista> atribuicaoVeiculoMotoristaSet =
             new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Multa> multas = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Abastecimento> abastecimentos = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<CRLV> crlvs = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sinistro> sinistros = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Imagem> imagems = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RelatorioVeiculo> relatorios = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProblemaRelatado> problemaRelatados = new HashSet<>();
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<VerificacaoDoVeiculo> verificacoes = new HashSet<>();
     @ManyToMany
     @JoinTable(name = "veiculo-seguro",
@@ -72,10 +72,10 @@ public class Veiculo implements Serializable {
     )
     private Set<Seguro> seguros = new HashSet<>();
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<OSInterna> osInternas = new HashSet<>();
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<OSExterna> osExternas = new HashSet<>();
 
     public Veiculo(String placa, String marca, String modelo,

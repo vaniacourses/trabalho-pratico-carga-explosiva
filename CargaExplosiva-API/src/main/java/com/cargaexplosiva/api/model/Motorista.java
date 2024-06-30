@@ -30,21 +30,21 @@ public class Motorista extends Funcionario implements Serializable{
     private String CNH;
     private String funcoes;
     private boolean ativo;
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<AtribuicaoVeiculoMotorista> atribuicaoVeiculoMotoristas =
             new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Multa> multas = new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ControlePresenca> presencas = new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RelatorioMotorista> relatorios = new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Abastecimento> abastecimentos = new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sinistro> sinistros = new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProblemaRelatado> problemaRelatados = new HashSet<>();
-    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "motorista", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<VerificacaoDoVeiculo> verificacoes = new HashSet<>();
 }
