@@ -23,11 +23,12 @@ public class ItemDoEstoqueController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveAbastecimento(@RequestBody @Valid requestSaveItemDoEstoqueDTO itemDoEstoqueDTO) {
+    public ResponseEntity<Object> saveItemDoEstoque(@RequestBody @Valid requestSaveItemDoEstoqueDTO itemDoEstoqueDTO) {
         try {
             var item = itemDoEstoqueService.save(itemDoEstoqueDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(item);
         } catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao cadastrar item.");
         }
     }
@@ -38,7 +39,7 @@ public class ItemDoEstoqueController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemDoEstoque>> getAllItem(){
+    public ResponseEntity<List<responseItemDoEstoqueDTO>> getAllItem(){
         return ResponseEntity.status(HttpStatus.OK).body(itemDoEstoqueService.getAll());
     }
 

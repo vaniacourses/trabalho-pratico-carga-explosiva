@@ -9,6 +9,8 @@ public record requestUpdateItemDoEstoqueDTO(
         @NotNull UUID id_item,
         @NotBlank String nome,
         @NotBlank String tipo,
-        @NotBlank String marca
+        @NotBlank String marca,
+        @NotNull int quantidade,
+        @NotNull float valor_unitario
 ) {}
 

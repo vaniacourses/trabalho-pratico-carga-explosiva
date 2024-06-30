@@ -30,7 +30,7 @@ public class ItemDoEstoque implements Serializable {
     private String tipo;
     private String marca;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "itemDoEstoque", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "itemDoEstoque", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Estoque estoque;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(mappedBy = "itens", fetch = FetchType.LAZY)
