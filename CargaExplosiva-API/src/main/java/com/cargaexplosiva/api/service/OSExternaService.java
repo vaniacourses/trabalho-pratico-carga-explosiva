@@ -41,7 +41,7 @@ public class OSExternaService {
         BeanUtils.copyProperties(dto, osExterna);
         osExterna.setVeiculo(veiculoRepository.findById(dto.veiculoId()).orElseThrow());
         osExterna.setOficina(oficinaRepository.findById(dto.oficinaId()).orElseThrow());
-        if (dto.servicoIds() != null) {
+        if (!dto.servicoIds().isEmpty()) {
             osExterna.setServicos(dto.servicoIds().stream()
                     .map(id -> servicoRepository.findById(id).orElseThrow())
                     .collect(Collectors.toSet()));
@@ -61,6 +61,10 @@ public class OSExternaService {
         return osExterna.<ResponseEntity<Object>>
         map(value -> ResponseEntity.status(HttpStatus.OK).body(new responseOSExternaDTO(value)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("OS Externa não encontrada."));
+    }
+
+    public Optional<OSExterna> getOptionalById (UUID id) {
+        return osExternaRepository.findById(id);
     }
 
     public ResponseEntity<Object> update(requestUpdateOSExternaDTO dto) {

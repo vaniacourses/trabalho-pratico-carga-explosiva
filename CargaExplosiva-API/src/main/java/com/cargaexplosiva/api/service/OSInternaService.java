@@ -3,6 +3,7 @@ package com.cargaexplosiva.api.service;
 import com.cargaexplosiva.api.dto.requestSaveOSInternaDTO;
 import com.cargaexplosiva.api.dto.requestUpdateOSInternaDTO;
 import com.cargaexplosiva.api.dto.responseOSInternaDTO;
+import com.cargaexplosiva.api.model.OSExterna;
 import com.cargaexplosiva.api.model.OSInterna;
 import com.cargaexplosiva.api.repository.OSInternaRepository;
 import com.cargaexplosiva.api.repository.ServicoRepository;
@@ -37,7 +38,7 @@ public class OSInternaService {
         var osInterna = new OSInterna();
         BeanUtils.copyProperties(dto, osInterna);
         osInterna.setVeiculo(veiculoRepository.findById(dto.veiculoId()).orElseThrow());
-        if (dto.servicoIds() != null) {
+        if (!dto.servicoIds().isEmpty()) {
             osInterna.setServicos(dto.servicoIds().stream()
                     .map(id -> servicoRepository.findById(id).orElseThrow())
                     .collect(Collectors.toSet()));
@@ -57,6 +58,10 @@ public class OSInternaService {
         return osInterna.<ResponseEntity<Object>>
                         map(value -> ResponseEntity.status(HttpStatus.OK).body(new responseOSInternaDTO(value)))
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("OS Interna não encontrada."));
+    }
+
+    public Optional<OSInterna> getOptionalById (UUID id) {
+        return osInternaRepository.findById(id);
     }
 
 

@@ -36,11 +36,7 @@ public class FacadeOSController {
     @Autowired
     private OSExternaService osExternaService;
 
-    @Autowired
-    private OSInternaRepository osInternaRepository;
 
-    @Autowired
-    private OSExternaRepository osExternaRepository;
     @PostMapping("/interna")
     public ResponseEntity<Object> criarOSInterna(@RequestBody requestSaveOSInternaDTO dto) {
         responseOSInternaDTO response = osInternaService.save(dto);
@@ -56,13 +52,9 @@ public class FacadeOSController {
     @GetMapping("/{tipo}/{id}")
     public ResponseEntity<Object> obterOS(@PathVariable String tipo, @PathVariable UUID id) {
         if ("interna".equalsIgnoreCase(tipo)) {
-            return osInternaRepository.findById(id)
-                    .<ResponseEntity<Object>>map(osInterna -> ResponseEntity.ok(new responseOSInternaDTO(osInterna)))
-                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("OS Interna não encontrada."));
+            return osInternaService.findById(id);
         } else if ("externa".equalsIgnoreCase(tipo)) {
-            return osExternaRepository.findById(id)
-                    .<ResponseEntity<Object>>map(osExterna -> ResponseEntity.ok(new responseOSExternaDTO(osExterna)))
-                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("OS Externa não encontrada."));
+            return osExternaService.findById(id);
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tipo de OS inválido");
         }
@@ -116,7 +108,7 @@ public class FacadeOSController {
 
     @PutMapping("/concluir/interna/{id}")
     public ResponseEntity<Object> concluirOSInterna(@PathVariable UUID id) {
-        Optional<OSInterna> optionalOsInterna = osInternaRepository.findById(id);
+        Optional<OSInterna> optionalOsInterna = osInternaService.getOptionalById(id);
         if (optionalOsInterna.isPresent()) {
             OSInterna osInterna = optionalOsInterna.get();
             requestUpdateOSInternaDTO updateDTO = new requestUpdateOSInternaDTO(
@@ -140,7 +132,7 @@ public class FacadeOSController {
 
     @PutMapping("/concluir/externa/{id}")
     public ResponseEntity<Object> concluirOSExterna(@PathVariable UUID id) {
-        Optional<OSExterna> optionalOsExterna = osExternaRepository.findById(id);
+        Optional<OSExterna> optionalOsExterna = osExternaService.getOptionalById(id);
         if (optionalOsExterna.isPresent()) {
             OSExterna osExterna = optionalOsExterna.get();
             requestUpdateOSExternaDTO updateDTO = new requestUpdateOSExternaDTO(
