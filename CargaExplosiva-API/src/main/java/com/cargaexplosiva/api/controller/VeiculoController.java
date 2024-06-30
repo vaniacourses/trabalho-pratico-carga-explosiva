@@ -47,7 +47,7 @@ public class VeiculoController {
         return veiculoService.update(veiculoDTO);
     }
 
-    @DeleteMapping("20")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteVeiculo(@PathVariable(value = "id") UUID id_veiculo){
         veiculoService.delete(id_veiculo);
         return ResponseEntity.status(HttpStatus.OK).build();
